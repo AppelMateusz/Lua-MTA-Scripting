@@ -69,7 +69,13 @@ addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),func
     end
 end)
 
-
+addCommandHandler("kreclicznik",function(plr,cmd,wartosc)
+    if isObjectInACLGroup("user."..getPlayerName(plr),aclGetGroup("Admin")) then
+        if not model then return end
+        setElementData(v,"przeb",wartosc)
+        executeCommandHandler("save",plr)
+    end
+end)
 
 addCommandHandler("stworzauto",function(plr,cmd,model)
     if isObjectInACLGroup("user."..getPlayerName(plr),aclGetGroup("Admin")) then
