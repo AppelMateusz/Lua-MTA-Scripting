@@ -126,11 +126,14 @@ addEventHandler("onVehicleStartEnter",root,function(plr,seat)
     if seat==0 then
         local own=getElementData(source,"owner")
         if own then
-            --if own~=getPlayerName(plr) then
-			if own~=getAccountName(getPlayerAccount(plr)) then -- MAMY TO!
-                cancelEvent()
-                outputChatBox("*To auto należy do innego gracza.",plr,255,255,255)
-            end
+		local kontogracza = getAccountName(getPlayerAccount(plr))
+			--if isObjectInACLGroup("user."..getPlayerName(plr),aclGetGroup("Admin")) then return end
+			if isObjectInACLGroup("user."..(kontogracza),aclGetGroup("Admin")) then return end
+				if own~=getAccountName(getPlayerAccount(plr)) then
+					cancelEvent()
+					outputChatBox("*To auto należy do innego gracza.",plr,255,255,255)
+				end
         end
     end
 end)
+
