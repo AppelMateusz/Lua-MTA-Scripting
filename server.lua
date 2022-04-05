@@ -69,10 +69,11 @@ addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),func
     end
 end)
 
-addCommandHandler("kreclicznik",function(plr,cmd,wartosc)
+addCommandHandler("kreclicznik",function(plr,cmd,wartoscp)
     if isObjectInACLGroup("user."..getPlayerName(plr),aclGetGroup("Admin")) then
-        if not model then return end
-        setElementData(v,"przeb",wartosc)
+        if not wartoscp then return end
+		local auto = getPedOccupiedVehicle (plr)
+        setElementData(auto ,"przeb",wartoscp)
         executeCommandHandler("save",plr)
     end
 end)
